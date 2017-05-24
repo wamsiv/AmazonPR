@@ -1,2 +1,2 @@
 # AmazonPR
-Sentiment Analysis on AmazonPR
+Sentiment Analysis on Amazon Product Reviews
