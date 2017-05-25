@@ -6,7 +6,7 @@ import csv
 
 #initialize count
 c=0
-i= 100000000
+i= 1000000
 
 #Define class to read columns  of file
 class Review(object):
@@ -41,7 +41,7 @@ with open('complete.json','r') as jsonfile:
 			break
 		i-=1
 		c +=1
-		if c%10000000 == 0:
+		if c%1000000 == 0:
 			print('Records read: ',c)
 
 		obj = json.loads(line, object_hook = as_review)
@@ -60,14 +60,16 @@ with open('complete.json','r') as jsonfile:
 	prodRev[currProd] =  currProdReview
 
 #taking in pre tagged sentences from the corpus
+print('Fetching sentences for polarity')
 sentences = sentence_polarity.sents()
 
 #creating a document set of tuple with sentences with respective categories
-
+print('Creating Document sets')
 documents = [(sent,cat) for cat in sentence_polarity.categories()
 			 for sent in sentence_polarity.sents(categories = cat)]
 
 #review text to be processed
+print('Joining all the reviews')
 allRevText = ''.join(allReviewList)
 allReviewList_words = nltk.word_tokenize(allRevText)
 review_words = [w for w in allReviewList_words if w.isalpha()]
